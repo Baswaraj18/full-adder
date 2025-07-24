@@ -1,0 +1,38 @@
+class FullAdder:
+    def _init_(self):
+        pass
+
+    def add(self, a, b, carry_in):
+        # Calculate sum and carry out
+        sum_bit = (a ^ b) ^ carry_in
+        carry_out = (a & b) | (carry_in & (a ^ b))
+        return sum_bit, carry_out
+
+def main():
+    print("Full Adder Simulation")
+    print("Enter binary digits (0 or 1) for A, B, and Carry In.")
+    
+    while True:
+        try:
+            a = int(input("Enter A (0 or 1): "))
+            b = int(input("Enter B (0 or 1): "))
+            carry_in = int(input("Enter Carry In (0 or 1): "))
+            
+            if a not in (0, 1) or b not in (0, 1) or carry_in not in (0, 1):
+                print("Please enter valid binary digits (0 or 1).")
+                continue
+            
+            adder = FullAdder()
+            sum_bit, carry_out = adder.add(a, b, carry_in)
+            
+            print(f"Sum: {sum_bit}, Carry Out: {carry_out}")
+        
+        except ValueError:
+            print("Invalid input. Please enter integers only.")
+        
+        except KeyboardInterrupt:
+            print("\nExiting the Full Adder Simulation.")
+            break
+
+if _name_ == "_main_":
+    main()
